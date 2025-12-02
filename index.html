@@ -93,8 +93,6 @@ Afnan, M., Smith, J., Chen, L. and Patel, R. (2022) ‘Practical use of antimatt
 University College London (2022) <i>What happens when matter and antimatter collide?</i> UCL Culture Online, 10 March. Available at: <a href="https://www.ucl.ac.uk/culture-online/case-studies/2022/mar/what-happens-when-matter-and-antimatter-collide"> https://www.ucl.ac.uk/culture-online/case-studies/2022/mar/what-happens-when-matter-and-antimatter-collide</a> (Accessed: 29 October 2025).
   </p>
 
-
-
   <!-- Word Count + Last Modified Display -->
   <div style="margin-top:40px; 
             font-family:calibri, sans-serif; 
@@ -106,6 +104,7 @@ University College London (2022) <i>What happens when matter and antimatter coll
             width: fit-content;">
 
   <div id="wordCount"></div>
+  <div id="sectionWordCount"></div>
   <div id="lastUpdated" style="margin-top:5px;"></div>
 
   <button onclick="getRepoUpdate()" 
@@ -121,8 +120,6 @@ University College London (2022) <i>What happens when matter and antimatter coll
   </button>
 
   </div>
-
-
   <script>
   /* ---------------- WORD COUNT ---------------- */
     function countWords(text) {
@@ -131,6 +128,27 @@ University College London (2022) <i>What happens when matter and antimatter coll
     let bodyText = document.body.innerText;
     let totalWords = countWords(bodyText);
     document.getElementById("wordCount").innerHTML = "Total Word Count: " + totalWords;
+    
+    /* -------- SECTION WORD COUNT: Introduction → Conclusion -------- */
+
+  function countSectionWords(startId, endId) {
+     const startElem = document.getElementById(startId);
+      const endElem = document.getElementById(endId);
+
+     if (!startElem || !endElem) return 0;
+
+     const range = document.createRange();
+     range.setStartBefore(startElem);
+     range.setEndAfter(endElem);
+
+     const text = range.toString();
+     return countWords(text);
+  }
+
+const sectionWords = countSectionWords("Introduction", "Conclusion");
+document.getElementById("sectionWordCount").innerHTML = 
+    "Word Count (Introduction → Conclusion): " + sectionWords;
+
 
   /* ---------------- GITHUB LAST UPDATED ---------------- */
 

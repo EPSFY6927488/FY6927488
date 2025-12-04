@@ -87,10 +87,10 @@
   <br>
   <h3 id="References">References</h3>
   <p class="indent">
-CERN (no date) <i>Matter–antimatter asymmetry problem</i>. Available at: <a href="https://home.cern/science/physics/matter-antimatter-asymmetry-problem"> https://home.cern/science/physics/matter-antimatter-asymmetry-problem</a> (Accessed: 29 October 2025).<br>
-U.S. Department of Energy, Office of Science (no date) <i>DOE explains… antimatter</i>. Available at: <a href="https://www.energy.gov/science/doe-explainsantimatter"> https://www.energy.gov/science/doe-explainsantimatter</a> (Accessed: 29 October 2025).<br>
-Afnan, M., Smith, J., Chen, L. and Patel, R. (2022) ‘Practical use of antimatter’, <i>Journal of Physics: Conference Series</i>, 2386(1). Available at: <a href="https://iopscience.iop.org/article/10.1088/1742-6596/2386/1/012074/pdf"> https://iopscience.iop.org/article/10.1088/1742-6596/2386/1/012074/pdf</a> (Accessed: 29 October 2025).<br>
-University College London (2022) <i>What happens when matter and antimatter collide?</i> UCL Culture Online, 10 March. Available at: <a href="https://www.ucl.ac.uk/culture-online/case-studies/2022/mar/what-happens-when-matter-and-antimatter-collide"> https://www.ucl.ac.uk/culture-online/case-studies/2022/mar/what-happens-when-matter-and-antimatter-collide</a> (Accessed: 29 October 2025).
+CERN (no date) <i>Matter–antimatter asymmetry problem</i>. Available at: <a href="https://home.cern/science/physics/matter-antimatter-asymmetry-problem">https://home.cern/science/physics/matter-antimatter-asymmetry-problem</a> (Accessed: 29 October 2025).<br>
+U.S. Department of Energy, Office of Science (no date) <i>DOE explains… antimatter</i>. Available at: <a href="https://www.energy.gov/science/doe-explainsantimatter">https://www.energy.gov/science/doe-explainsantimatter</a> (Accessed: 29 October 2025).<br>
+Afnan, M., Smith, J., Chen, L. and Patel, R. (2022) ‘Practical use of antimatter’, <i>Journal of Physics: Conference Series</i>, 2386(1). Available at: <a href="https://iopscience.iop.org/article/10.1088/1742-6596/2386/1/012074/pdf">https://iopscience.iop.org/article/10.1088/1742-6596/2386/1/012074/pdf</a> (Accessed: 29 October 2025).<br>
+University College London (2022) <i>What happens when matter and antimatter collide?</i> UCL Culture Online, 10 March. Available at: <a href="https://www.ucl.ac.uk/culture-online/case-studies/2022/mar/what-happens-when-matter-and-antimatter-collide">https://www.ucl.ac.uk/culture-online/case-studies/2022/mar/what-happens-when-matter-and-antimatter-collide</a> (Accessed: 29 October 2025).
   </p>
 
   <!-- Word Count + Last Modified Display -->
@@ -121,6 +121,10 @@ University College London (2022) <i>What happens when matter and antimatter coll
 
   </div>
   <script>
+  /* -------- PRESENTATION -------- */
+    <video src="EN0018 PRESENTATION.mp4" width="800" height="450" controls>
+    </video>
+    
   /* ---------------- WORD COUNT ---------------- */
     function countWords(text) {
        return text.trim().split(/\s+/).filter(word => word.length > 0).length;
@@ -129,8 +133,7 @@ University College London (2022) <i>What happens when matter and antimatter coll
     let totalWords = countWords(bodyText);
     document.getElementById("wordCount").innerHTML = "Total Word Count: " + totalWords;
     
-    /* -------- SECTION WORD COUNT: Introduction → Conclusion -------- */
-
+  /* -------- SECTION WORD COUNT: Introduction → Conclusion -------- */
   function countSectionWords(startId, endId) {
      const startElem = document.getElementById(startId);
       const endElem = document.getElementById(endId);
@@ -145,9 +148,9 @@ University College London (2022) <i>What happens when matter and antimatter coll
      return countWords(text);
   }
 
-const sectionWords = countSectionWords("Introduction", "Conclusion");
-document.getElementById("sectionWordCount").innerHTML = 
-    "Word Count (Introduction → Conclusion): " + sectionWords;
+  const sectionWords = countSectionWords("Introduction", "Conclusion");
+  document.getElementById("sectionWordCount").innerHTML = 
+      "Word Count (Introduction → Conclusion): " + sectionWords;
 
 
   /* ---------------- GITHUB LAST UPDATED ---------------- */

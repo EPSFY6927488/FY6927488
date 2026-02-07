@@ -151,47 +151,55 @@ University College London (2022) <i>What happens when matter and antimatter coll
   const sectionWords = countSectionWords("Introduction", "Conclusion");
   document.getElementById("sectionWordCount").innerHTML = 
       "Word Count (Introduction → Conclusion): " + sectionWords;
+  </script>
 
+    <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////// Adding last update ////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Last commit time display -->
+<div id="last-updated">Loading last update time...</div>
 
-  /* ---------------- GITHUB LAST UPDATED ---------------- */
+<!-- Verify Button -->
+<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
 
-    const repo = "yourUsername/yourRepo";  
-
-    async function getRepoUpdate() {
-        const url = `https://api.github.com/repos/EPSFY6927488/FY6927488`;
-
+<script>
+    async function getLastUpdatedTime() {
+        const username = 'EPSFY6927488';
+        const repo = 'FY6927488';
+       
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
         try {
-           const response = await fetch(url);
-           if (!response.ok) {
-               document.getElementById("lastUpdated").innerHTML = 
-                  "Last Modified Time: (Error fetching repo)";
-                return;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
             }
-
-            const data = await response.json();
-            const updated = new Date(data.updated_at);
-
-           const formatted = updated.toLocaleString(undefined, {
-              year: 'numeric',
-              month: 'numeric',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-              second: 'numeric',
-              hour12: true
-           });
-
-            document.getElementById("lastUpdated").innerHTML = 
-              "Last Modified Time: " + formatted;
-
+            const commits = await response.json();
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+               
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+            }
         } catch (error) {
-           document.getElementById("lastUpdated").innerHTML = 
-              "Last Modified Time: (Unable to load)";
+            console.error('Error fetching the last updated time:', error);
+            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
         }
     }
 
-    getRepoUpdate();
-  </script>
-
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
+    window.onload = getLastUpdatedTime;
+</script>
 </body>
 </html>
